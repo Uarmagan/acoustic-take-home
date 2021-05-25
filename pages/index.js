@@ -1,82 +1,45 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import Layout from '../components/layout';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 export default function Home() {
+  async function getContent() {
+    const res = await axios.get(
+      'https://content-eu-4.content-cms.com/api/859f2008-a40a-4b92-afd0-24bb44d10124/delivery/v1/content/db4930e9-7504-4d9d-ae6c-33facca754d1'
+    );
+    console.log(res.data);
+  }
+
+  useEffect(() => {
+    getContent();
+  }, []);
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.js
-          </code>
-        </p>
-
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
-      </footer>
-    </div>
-  )
+    <Layout>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <article className="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16 w-full">
+          <h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black">
+            title of this article
+          </h1>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full mt-2">
+            <div className="flex items-center">
+              😂
+              <p className="text-sm text-gray-700">
+                by
+                {' Lee Robinson'}
+                {'5/45/4'}
+              </p>
+            </div>
+          </div>
+          <div className="prose max-w-none w-full">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae
+            sunt, neque ipsum nulla quasi ab in aperiam, temporibus doloremque,
+            aut voluptas vitae illum expedita ipsam! Suscipit cum autem
+            perspiciatis eum?
+          </div>
+        </article>
+      </div>
+    </Layout>
+  );
 }
